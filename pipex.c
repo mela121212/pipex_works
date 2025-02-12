@@ -77,14 +77,14 @@ pid_t last_process(int input_fd, char *command, char *output_file, char **env)
 int main(int argc, char **argv, char **env)
 {
 	pid_t second_process;
-	int   intermediate_fd;
+	int   input_fd;
 
 	if (argc != 5)
 	{
 		perror("Wrong number of arguments\n");
 		return (1);
 	}
-	intermediate_fd = first_process(argv[1], argv[2], env);
-	second_process = last_process(intermediate_fd, argv[3], argv[4], env);
+	input_fd = first_process(argv[1], argv[2], env);
+	second_process = last_process(input_fd, argv[3], argv[4], env);
 	return (wait_for_processes(second_process, 2));
 }
